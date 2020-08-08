@@ -7,7 +7,23 @@ class ShoesPage extends StatelessWidget {
     return Scaffold(
         // body: CustomAppBar(text: 'For you')
         body: Column(
-      children: [CustomAppBar(text: 'For you'), ShoeSize()],
+      children: [
+        CustomAppBar(text: 'For you'),
+        Expanded(
+          child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  ShoeSize(),
+                  ShoeDescription(
+                    title: 'Nike Air Max 720',
+                    desc:
+                        "The Nike Air Max 720 goes bigger than ever before with Nike's taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so.",
+                  )
+                ],
+              )),
+        )
+      ],
     ));
   }
 }
