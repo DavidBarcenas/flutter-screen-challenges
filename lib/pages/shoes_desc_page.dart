@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:shoes/widgets/custom_widgets.dart';
 
@@ -9,7 +10,7 @@ class ShoeDescPage extends StatelessWidget {
       children: [
         Stack(
           children: [
-            ShoeSize(fullScreen: true),
+            Hero(tag: 'shoe-show', child: ShoeSize(fullScreen: true)),
             Positioned(
                 top: 40,
                 // left: 20,
@@ -22,7 +23,9 @@ class ShoeDescPage extends StatelessWidget {
                     color: Colors.white,
                     size: 40,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ))
           ],
         ),
@@ -43,8 +46,12 @@ class ShoeDescPage extends StatelessWidget {
                     style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
                   Spacer(),
-                  CustomButton(
-                    text: 'Buy now',
+                  Bounce(
+                    delay: Duration(milliseconds: 200),
+                    from: 8,
+                    child: CustomButton(
+                      text: 'Buy now',
+                    ),
                   )
                 ],
               ),
@@ -73,18 +80,21 @@ class _ShoeColors extends StatelessWidget {
                 left: 90,
                 child: _ColorItem(
                   color: Color(0xff364d56),
+                  idx: 1,
                 ),
               ),
               Positioned(
                 left: 60,
                 child: _ColorItem(
                   color: Color(0xff2099f1),
+                  idx: 2,
                 ),
               ),
               Positioned(
                 left: 30,
                 child: _ColorItem(
                   color: Color(0xffffad29),
+                  idx: 3,
                 ),
               ),
               _ColorItem(
@@ -105,15 +115,19 @@ class _ShoeColors extends StatelessWidget {
 
 class _ColorItem extends StatelessWidget {
   final Color color;
-
-  const _ColorItem({@required this.color});
+  final int idx;
+  const _ColorItem({@required this.color, this.idx = 1});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 45,
-      height: 45,
-      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+    return FadeInLeft(
+      delay: Duration(milliseconds: 100 * this.idx),
+      duration: Duration(milliseconds: 300),
+      child: Container(
+        width: 45,
+        height: 45,
+        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+      ),
     );
   }
 }
@@ -145,6 +159,7 @@ class _ItemCTA extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: FloatingActionButton(
+        heroTag: null,
         onPressed: () {},
         child: icon,
         backgroundColor: Colors.white,
