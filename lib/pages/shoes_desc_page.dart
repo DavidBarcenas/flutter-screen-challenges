@@ -7,7 +7,25 @@ class ShoeDescPage extends StatelessWidget {
     return Scaffold(
         body: Column(
       children: [
-        ShoeSize(fullScreen: true),
+        Stack(
+          children: [
+            ShoeSize(fullScreen: true),
+            Positioned(
+                top: 40,
+                // left: 20,
+                child: FloatingActionButton(
+                  elevation: 0,
+                  highlightElevation: 0,
+                  backgroundColor: Colors.transparent,
+                  child: Icon(
+                    Icons.chevron_left,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                  onPressed: () {},
+                ))
+          ],
+        ),
         Expanded(
             child: Column(
           children: [
@@ -31,7 +49,8 @@ class ShoeDescPage extends StatelessWidget {
                 ],
               ),
             ),
-            _ShoeColors()
+            _ShoeColors(),
+            _ButtonsCTA()
           ],
         ))
       ],
@@ -43,7 +62,7 @@ class _ShoeColors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 15),
+      margin: EdgeInsets.only(top: 5, bottom: 30),
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: Row(
         children: [
@@ -95,6 +114,44 @@ class _ColorItem extends StatelessWidget {
       width: 45,
       height: 45,
       decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+    );
+  }
+}
+
+class _ButtonsCTA extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final double size = MediaQuery.of(context).size.width;
+    return Container(
+      width: (size * 0.75),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _ItemCTA(Icon(Icons.star), 'like'),
+          _ItemCTA(Icon(Icons.add_shopping_cart), 'cart'),
+          _ItemCTA(Icon(Icons.wb_sunny), 'settings')
+        ],
+      ),
+    );
+  }
+}
+
+class _ItemCTA extends StatelessWidget {
+  final Icon icon;
+  final String type;
+
+  const _ItemCTA(this.icon, this.type);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FloatingActionButton(
+        onPressed: () {},
+        child: icon,
+        backgroundColor: Colors.white,
+        foregroundColor: (this.type == 'like')
+            ? Colors.redAccent
+            : Colors.grey.withOpacity(0.4),
+      ),
     );
   }
 }
