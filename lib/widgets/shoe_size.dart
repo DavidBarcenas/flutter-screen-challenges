@@ -17,23 +17,20 @@ class ShoeSize extends StatelessWidget {
               context, MaterialPageRoute(builder: (_) => ShoeDescPage()));
         }
       },
-      child: ChangeNotifierProvider(
-        create: (_) => ShoeModel(),
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: (this.fullScreen) ? 0 : 30),
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-          width: double.infinity,
-          height: (this.fullScreen) ? 390 : 415,
-          decoration: BoxDecoration(
-              borderRadius: (this.fullScreen)
-                  ? BorderRadius.only(
-                      bottomLeft: Radius.circular(50),
-                      bottomRight: Radius.circular(50))
-                  : BorderRadius.circular(50),
-              color: Color(0xffffcf53)),
-          child: Column(
-            children: [_ShoeShow(), if (!this.fullScreen) _ShoeSizes()],
-          ),
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: (this.fullScreen) ? 0 : 30),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+        width: double.infinity,
+        height: (this.fullScreen) ? 390 : 415,
+        decoration: BoxDecoration(
+            borderRadius: (this.fullScreen)
+                ? BorderRadius.only(
+                    bottomLeft: Radius.circular(50),
+                    bottomRight: Radius.circular(50))
+                : BorderRadius.circular(50),
+            color: Color(0xffffcf53)),
+        child: Column(
+          children: [_ShoeShow(), if (!this.fullScreen) _ShoeSizes()],
         ),
       ),
     );
@@ -43,6 +40,7 @@ class ShoeSize extends StatelessWidget {
 class _ShoeShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final img = Provider.of<ShoeModel>(context).assetImage;
     return Stack(
       children: [
         Positioned(
@@ -62,7 +60,7 @@ class _ShoeShow extends StatelessWidget {
           ),
         ),
         Image(
-          image: AssetImage('assets/img/azul.png'),
+          image: AssetImage(img),
         )
       ],
     );

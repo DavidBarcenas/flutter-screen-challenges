@@ -6,13 +6,13 @@ class ShoeModel with ChangeNotifier {
 
   String get assetImage => this._assetImage;
   set assetImage(String value) {
-    this._assetImage = value;
-    this.notifyListeners();
+    this._assetImage = 'assets/img/' + value + '.png';
+    notifyListeners();
   }
 
   double get size => this._size;
   set size(double value) {
     this._size = value;
-    this.notifyListeners();
+    notifyListeners();
   }
 }
