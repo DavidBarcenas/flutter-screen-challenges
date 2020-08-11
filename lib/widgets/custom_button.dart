@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
       child: FlatButton(
         color: Colors.orange,
         textColor: Colors.white,
-        child: Text('Add to cart'),
+        child: Text('$text'),
         onPressed: () {},
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
