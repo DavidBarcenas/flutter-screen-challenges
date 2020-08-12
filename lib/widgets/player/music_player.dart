@@ -1,11 +1,51 @@
 import 'package:flutter/material.dart';
 
-class MusicDisc extends StatelessWidget {
+class MusicPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      margin: EdgeInsets.only(top: 70),
       child: Row(
-        children: [_MusicDiscImage()],
+        children: [_MusicDiscImage(), _ProgressBar()],
+      ),
+    );
+  }
+}
+
+class _ProgressBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text(
+            '4:30',
+            style: TextStyle(color: Colors.white.withOpacity(0.6)),
+          ),
+          Stack(
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                width: 3,
+                height: 230,
+                color: Colors.white.withOpacity(0.1),
+              ),
+              Positioned(
+                bottom: 10,
+                child: Container(
+                  width: 3,
+                  height: 120,
+                  color: Colors.white.withOpacity(0.8),
+                ),
+              )
+            ],
+          ),
+          Text(
+            '4:30',
+            style: TextStyle(color: Colors.white.withOpacity(0.6)),
+          )
+        ],
       ),
     );
   }
@@ -15,6 +55,7 @@ class _MusicDiscImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(right: 45),
       padding: EdgeInsets.all(20),
       width: 250,
       height: 250,
