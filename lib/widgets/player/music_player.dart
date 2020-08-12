@@ -21,7 +21,7 @@ class _ProgressBar extends StatelessWidget {
         children: [
           Text(
             '4:30',
-            style: TextStyle(color: Colors.white.withOpacity(0.6)),
+            style: TextStyle(color: Colors.white.withOpacity(0.5)),
           ),
           Stack(
             children: [
@@ -43,7 +43,7 @@ class _ProgressBar extends StatelessWidget {
           ),
           Text(
             '4:30',
-            style: TextStyle(color: Colors.white.withOpacity(0.6)),
+            style: TextStyle(color: Colors.white.withOpacity(0.5)),
           )
         ],
       ),
