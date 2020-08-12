@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoes/model/audio_player_model.dart';
 
 class TitlePlay extends StatefulWidget {
   @override
@@ -25,6 +27,8 @@ class _TitlePlayState extends State<TitlePlay>
 
   @override
   Widget build(BuildContext context) {
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context);
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 40),
       margin: EdgeInsets.only(top: 40),
@@ -50,9 +54,11 @@ class _TitlePlayState extends State<TitlePlay>
               if (this.isPlaying) {
                 this.playAnimstion.reverse();
                 this.isPlaying = false;
+                audioPlayerModel.controller.stop();
               } else {
                 this.playAnimstion.forward();
                 this.isPlaying = true;
+                audioPlayerModel.controller.repeat();
               }
             },
             backgroundColor: Color(0xfff8cb51),

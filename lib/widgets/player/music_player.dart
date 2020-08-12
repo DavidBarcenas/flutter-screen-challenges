@@ -1,4 +1,7 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoes/model/audio_player_model.dart';
 
 class MusicPlayer extends StatelessWidget {
   @override
@@ -54,6 +57,8 @@ class _ProgressBar extends StatelessWidget {
 class _MusicDiscImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context);
+
     return Container(
       margin: EdgeInsets.only(right: 50),
       padding: EdgeInsets.all(20),
@@ -62,7 +67,14 @@ class _MusicDiscImage extends StatelessWidget {
       child: ClipRRect(
           borderRadius: BorderRadius.circular(200),
           child: Stack(alignment: Alignment.center, children: [
-            Image(image: AssetImage('assets/img/aurora.jpg')),
+            SpinPerfect(
+                animate: false,
+                duration: Duration(seconds: 10),
+                infinite: true,
+                manualTrigger: true,
+                controller: (animationController) =>
+                    audioPlayerModel.controller = animationController,
+                child: Image(image: AssetImage('assets/img/aurora.jpg'))),
             Container(
               width: 25,
               height: 25,

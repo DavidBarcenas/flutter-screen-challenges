@@ -3,10 +3,15 @@ import 'package:provider/provider.dart';
 import 'package:shoes/model/shoe_model.dart';
 import 'package:shoes/pages/music_player_page.dart';
 import 'package:shoes/theme/theme.dart';
+
+import 'model/audio_player_model.dart';
 // import 'package:shoes/pages/shoes_page.dart';
 
 void main() => runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => ShoeModel())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => ShoeModel()),
+        ChangeNotifierProvider(create: (_) => AudioPlayerModel())
+      ],
       child: MyApp(),
     ));
 
