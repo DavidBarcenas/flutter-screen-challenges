@@ -1,3 +1,4 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes/model/audio_player_model.dart';
@@ -10,7 +11,9 @@ class TitlePlay extends StatefulWidget {
 class _TitlePlayState extends State<TitlePlay>
     with SingleTickerProviderStateMixin {
   bool isPlaying = false;
+  bool firstTime = true;
   AnimationController playAnimstion;
+  final assetAudioPlayer = new AssetsAudioPlayer();
 
   @override
   void initState() {
@@ -23,6 +26,20 @@ class _TitlePlayState extends State<TitlePlay>
   void dispose() {
     this.playAnimstion.dispose();
     super.dispose();
+  }
+
+  void open() {
+    final audioPlayerModel =
+        Provider.of<AudioPlayerModel>(context, listen: false);
+    assetAudioPlayer.open(Audio('assets/Breaking-Benjamin-Far-Away.mp3'));
+
+    assetAudioPlayer.currentPosition.listen((event) {
+      audioPlayerModel.songCurrent = event;
+    });
+
+    assetAudioPlayer.current.listen((event) {
+      audioPlayerModel.songDuration = event.audio.duration;
+    });
   }
 
   @override
@@ -59,6 +76,13 @@ class _TitlePlayState extends State<TitlePlay>
                 this.playAnimstion.forward();
                 this.isPlaying = true;
                 audioPlayerModel.controller.repeat();
+              }
+
+              if (this.firstTime) {
+                this.open();
+                this.firstTime = false;
+              } else {
+                assetAudioPlayer.playOrPause();
               }
             },
             backgroundColor: Color(0xfff8cb51),

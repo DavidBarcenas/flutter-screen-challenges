@@ -19,11 +19,12 @@ class MusicPlayer extends StatelessWidget {
 class _ProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context);
     return Container(
       child: Column(
         children: [
           Text(
-            '4:30',
+            '${audioPlayerModel.songTotalDuration}',
             style: TextStyle(color: Colors.white.withOpacity(0.5)),
           ),
           Stack(
@@ -38,14 +39,14 @@ class _ProgressBar extends StatelessWidget {
                 bottom: 10,
                 child: Container(
                   width: 3,
-                  height: 120,
+                  height: 230 * audioPlayerModel.percentage,
                   color: Colors.white.withOpacity(0.8),
                 ),
               )
             ],
           ),
           Text(
-            '4:30',
+            '${audioPlayerModel.songCurrentTotalDuration}',
             style: TextStyle(color: Colors.white.withOpacity(0.5)),
           )
         ],
