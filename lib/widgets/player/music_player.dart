@@ -55,7 +55,7 @@ class _MusicDiscImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 45),
+      margin: EdgeInsets.only(right: 50),
       padding: EdgeInsets.all(20),
       width: 250,
       height: 250,
