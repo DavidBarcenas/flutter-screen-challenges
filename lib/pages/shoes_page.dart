@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoes/widgets/custom_widgets.dart';
+import 'package:shoes/widgets/shoes/custom_widgets.dart';
 
 class ShoesPage extends StatelessWidget {
   @override

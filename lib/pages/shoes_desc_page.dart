@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes/model/shoe_model.dart';
-import 'package:shoes/widgets/custom_widgets.dart';
+import 'package:shoes/widgets/shoes/custom_widgets.dart';
 
 class ShoeDescPage extends StatelessWidget {
   @override
