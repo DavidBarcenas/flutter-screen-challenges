@@ -1,6 +1,28 @@
 import 'package:flutter/material.dart';
 
-class TitlePlay extends StatelessWidget {
+class TitlePlay extends StatefulWidget {
+  @override
+  _TitlePlayState createState() => _TitlePlayState();
+}
+
+class _TitlePlayState extends State<TitlePlay>
+    with SingleTickerProviderStateMixin {
+  bool isPlaying = false;
+  AnimationController playAnimstion;
+
+  @override
+  void initState() {
+    this.playAnimstion = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 300));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    this.playAnimstion.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,9 +46,18 @@ class TitlePlay extends StatelessWidget {
           ),
           Spacer(),
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              if (this.isPlaying) {
+                this.playAnimstion.reverse();
+                this.isPlaying = false;
+              } else {
+                this.playAnimstion.forward();
+                this.isPlaying = true;
+              }
+            },
             backgroundColor: Color(0xfff8cb51),
-            child: Icon(Icons.play_arrow),
+            child: AnimatedIcon(
+                icon: AnimatedIcons.play_pause, progress: this.playAnimstion),
           )
         ],
       ),

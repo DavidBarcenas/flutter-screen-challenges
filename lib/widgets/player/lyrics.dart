@@ -11,7 +11,12 @@ class Lyrics extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             itemExtent: getLyrics().length * 1.0,
             diameterRatio: 1.8,
-            children: getLyrics().map((line) => Text(line)).toList()),
+            children: getLyrics()
+                .map((line) => Text(
+                      line,
+                      style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                    ))
+                .toList()),
       ),
     );
   }
