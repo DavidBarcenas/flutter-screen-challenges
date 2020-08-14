@@ -5,7 +5,7 @@ import 'package:shoes/pages/music_player_page.dart';
 import 'package:shoes/theme/theme.dart';
 
 import 'model/audio_player_model.dart';
-// import 'package:shoes/pages/shoes_page.dart';
+import 'package:shoes/pages/shoes_page.dart';
 
 void main() => runApp(MultiProvider(
       providers: [
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'UI Challenges',
         debugShowCheckedModeBanner: false,
-        theme: playerTheme,
-        home: MusicPlayerPage());
+        // theme: playerTheme,
+        home: ShoesPage());
   }
 }
